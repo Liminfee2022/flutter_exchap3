@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final VoidCallback? searchButton;
-  const CustomAppBar({
+   const CustomAppBar({
     Key? key,
     required this.title,
     this.searchButton,
@@ -24,7 +24,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           children: [
             Row(
               children: [
-                SvgPicture.asset('asset/icons/leftArrow.svg'),
+                SvgPicture.asset('asset/icons/leftArrow.svg', color: Theme.of(context).buttonColor,),
                 const SizedBox(
                   width: 20,
                 ),
@@ -36,7 +36,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
             InkWell(
               onTap: searchButton,
-              child: SvgPicture.asset('asset/icons/search.svg'),
+              child: SvgPicture.asset('asset/icons/search.svg', color: Theme.of(context).buttonColor,),
             ),
           ],
         ),

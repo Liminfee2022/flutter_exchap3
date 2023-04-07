@@ -2,24 +2,37 @@ import 'package:exchap3/commonWidgets/CustomAppBar.dart';
 import 'package:exchap3/home/contains.dart';
 import 'package:exchap3/home/homeWidgets/HorizontalCard.dart';
 import 'package:exchap3/home/homeWidgets/VerticalCard.dart';
+import 'package:exchap3/theme/theme_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  final VoidCallback? searchButton;
+  const HomeScreen({Key? key, this.searchButton}) : super(key: key);
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+ThemeManager _themeManager = ThemeManager();
+
+class _HomeScreenState extends State<HomeScreen> {
+  bool changeIcon = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: const CustomAppBar(
+      appBar: CustomAppBar(
         title: 'Salad',
+        searchButton: widget.searchButton,
       ),
       body: RefreshIndicator(
         color: Colors.white,
         backgroundColor: Colors.blue,
         strokeWidth: 4.0,
         onRefresh: () async {
+          setState(() {
+            changeIcon = !changeIcon;
+          });
           return Future<void>.delayed(const Duration(seconds: 3));
         },
         child: Padding(
@@ -86,7 +99,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   itemCount: verticalListViewData.length,
                   itemBuilder: (BuildContext context, int index) =>
-                      VerticalCard(item: verticalListViewData[index]),
+                      VerticalCard(item: verticalListViewData[index], iconState: changeIcon),
                 ),
               ),
             ],

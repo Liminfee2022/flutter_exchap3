@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 class VerticalCard extends StatelessWidget {
   final VerticalItems item;
-  const VerticalCard({Key? key, required this.item}) : super(key: key);
+  final bool iconState;
+  const VerticalCard({Key? key, required this.item, required this.iconState}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +30,12 @@ class VerticalCard extends StatelessWidget {
                 width: 30,
                 height: 30,
                 decoration: BoxDecoration(
-                  color: Colors.red,
+                  color: iconState ? Colors.red : Colors.yellow,
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: Icon(
                   item.mark ? Icons.bookmark_added_rounded : Icons.bookmark_border_outlined,
-                  color: Colors.white,
+                  color: iconState ? Colors.white : Colors.red,
                   size: 20,
                 ),
               )),
